@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 api = Api(app, prefix='/api/v1')
 
-data = json.load(open('/var/www/data/csv/data.json'))
+data = json.load(open('/var/www/jateng/data/csv/data.json'))
 
 
 def dataKosong(data_id):
