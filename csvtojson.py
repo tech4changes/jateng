@@ -33,3 +33,24 @@ vm['detail'] = json.loads(visi['DETAILS'].to_json(orient='records'))
 visimisi = {}
 visimisi['ganjaryasin'] = vm
 visimisi['sudirmanida'] = vm
+
+ra0 = json.loads(pd.read_csv('rekapanggaran.csv'))
+ra1 = json.loads(pd.read_csv('ra2017.csv'))
+ra2 = json.loads(pd.read_csv('ra2018.csv'))
+
+#########################################
+
+l = []
+for r in json.loads(ra0):
+    for n in json.loads(ra1):
+        r['ra2017'] = n
+    for k in json.loads(ra2):
+        r['ra20018'] = k
+    l.append(r)
+
+d = json.load(open('data.json'))
+
+d['rekap.anggaran.kampanye'] = l
+
+with open('data00.json','w') as ofile:
+    ofile.write(json.dumps(d, ofile))
